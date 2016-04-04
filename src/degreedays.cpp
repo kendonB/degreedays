@@ -11,6 +11,13 @@ using namespace Rcpp;
 
 /// Unit is days - i.e. x == 0.5 -> 12pm
 // Horizontal shift parameter is irrelevant - this assumes the day starts at the minimum.
+
+//' @title Sine function with max and min given.
+//' @description Sine function evaluated at x for single sine interpolation.
+//' @param x Vector of x values in [0, 1] to evaluate at.
+//' @param tmin \code{double} tmin value.
+//' @param tmax \code{double} tmax value.
+//' @return Vector of interpolated sine values.
 // [[Rcpp::export]]
 NumericVector sin_estimate_NumericVector(NumericVector x, double tmin, double tmax) {
   double shift = 6.0 / 24.0;
@@ -55,15 +62,26 @@ NumericVector degree_days_band(NumericVector t0, NumericVector t1,
   if (n0 != n1) {
     throw std::invalid_argument("Lengths of t0 and t1 differ.");
   }
+  if(tmin > tmax){
+    throw std::invalid_argument("tmin > tmax");
+  }
   NumericVector out(n0);
   for(int i = 0; i < n0; ++i) {
     if (R_IsNA(tmin) || R_IsNA(tmax)){
       out[i] = NA_REAL;
-    } else if (t0[i] < tmin && t1[i] >= tmax) {
+    } else if (tmax == tmin && t1[i] == tmax){
+      // Strange case where tmax == tmin and they're on the top border of
+      // a band.
+      out[i] = t1[i] - t0[i];
+    } else if (tmax == tmin && t0[i] == tmax){
+      // Strange case where tmax == tmin and they're on the bottom border of
+      // a band.
+      out[i] = 0;
+    } else if (t0[i] <= tmin && t1[i] >= tmax) {
       // Case A where the band bounds the entire day's temperature range.
       double m = (tmax + tmin) / 2.0;
       out[i] = m - t0[i];
-    } else if (t0[i] >= tmin && t1[i] >= tmax && t0[i] < tmax) {
+    } else if (t0[i] > tmin && t1[i] >= tmax && t0[i] < tmax) {
       // Case B where the band straddles the tmax value.
       double w = (tmax - tmin) / 2.0;
       double m = (tmax + tmin) / 2.0;
@@ -105,21 +123,33 @@ NumericVector days_in_bin(NumericVector t0, NumericVector t1,
   if (n0 != n1) {
     throw std::invalid_argument("Lengths of t0 and t1 differ.");
   }
+
+  if (tmin > tmax) {
+    throw std::invalid_argument("tmin > tmax");
+  }
   NumericVector out(n0);
   for(int i = 0; i < n0; ++i) {
     if (R_IsNA(tmin) || R_IsNA(tmax)){
       out[i] = NA_REAL;
-    } else if (t0[i] < tmin && t1[i] >= tmax) {
+    } else if (tmax == tmin && t1[i] == tmax) {
+      // Strange case where tmax == tmin and they're on the top border of a bin
+      out[i] = 0.5;
+    } else if (t0[i] >= t1[i]) {
+      throw std::invalid_argument("t0 < t1 is not TRUE");
+    } else if (tmax == tmin && t0[i] == tmax) {
+      // Strange case where tmax == tmin and they're on the bottom border of a bin
+      out[i] = 0.5;
+    } else if (t0[i] <= tmin && t1[i] >= tmax) {
       // Case A where the band bounds the entire day's temperature range.
       out[i] = 1.0;
-    } else if (t0[i] >= tmin && t1[i] >= tmax && t0[i] < tmax) {
+    } else if (t0[i] > tmin && t1[i] >= tmax && t0[i] < tmax) {
       // Case B where the band straddles the tmax value.
       double w = (tmax - tmin) / 2.0;
       double m = (tmax + tmin) / 2.0;
       double shift = 6.0 / 24.0;
       double theta_1 = asin((t0[i] - m) / w) / (2.0 * M_PI) + shift;
       out[i] = 2.0 * (0.5 - theta_1);
-    } else if (t1[i] < tmax && t1[i] >= tmin) {
+    } else if (t1[i] < tmax && t1[i] > tmin) {
       // Case C where the band is contained in the bounds of tmin and tmax
       // and the Case (not in Baskerville and Emin) where
       // the band straddles the tmin value.
@@ -130,7 +160,7 @@ NumericVector days_in_bin(NumericVector t0, NumericVector t1,
       outt0 = days_in_bin(tmpt0, infty, tmin, tmax);
       outt1 = days_in_bin(tmpt1, infty, tmin, tmax);
       out[i] = outt0[0] - outt1[0];
-    } else if (t1[i] < tmin) {
+    } else if (t1[i] <= tmin) {
       // Band is below the minimum temperature.
       out[i] = 0.0;
     } else if (t0[i] >= tmax) {

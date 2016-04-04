@@ -9,4 +9,8 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 LazyData: TRUE
 LinkingTo: Rcpp
-Imports: Rcpp
+Imports:
+    Rcpp
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
