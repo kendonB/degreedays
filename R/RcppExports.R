@@ -23,12 +23,27 @@ sin_int_estimate <- function(x, tmin, tmax) {
     .Call('degreedays_sin_int_estimate', PACKAGE = 'degreedays', x, tmin, tmax)
 }
 
-degree_days_band <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_degree_days_band', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+degree_days_one <- function(t0, t1, tmin, tmax) {
+    .Call('degreedays_degree_days_one', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
 }
 
-days_in_bin <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_days_in_bin', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+#' @title Calculate degree days for daily data.
+#' @description Calculate degree days for daily data using C++ code.
+#' @param t0 vector of lower bounds
+#' @param t1 vector of upper bounds
+#' @param tmin vector of tmin values (1 per day)
+#' @param tmax vector of tmax values (1 per day)
+#' @return num_days x num_bins \code{matrix}
+degree_days_band_daily <- function(t0, t1, tmin, tmax) {
+    .Call('degreedays_degree_days_band_daily', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+}
+
+degree_days_band_daily_par <- function(t0, t1, tmin, tmax) {
+    .Call('degreedays_degree_days_band_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+}
+
+days_in_bin_one <- function(t0, t1, tmin, tmax) {
+    .Call('degreedays_days_in_bin_one', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
 }
 
 #' @title Calculate days in bin for daily data.
@@ -42,14 +57,7 @@ days_in_bin_daily <- function(t0, t1, tmin, tmax) {
     .Call('degreedays_days_in_bin_daily', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
 }
 
-#' @title Calculate degree days for daily data.
-#' @description Calculate degree days for daily data using C++ code.
-#' @param t0 vector of lower bounds
-#' @param t1 vector of upper bounds
-#' @param tmin vector of tmin values (1 per day)
-#' @param tmax vector of tmax values (1 per day)
-#' @return num_days x num_bins \code{matrix}
-degree_days_band_daily <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_degree_days_band_daily', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+days_in_bin_daily_par <- function(t0, t1, tmin, tmax) {
+    .Call('degreedays_days_in_bin_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
 }
 

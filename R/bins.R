@@ -6,8 +6,13 @@
 #' @export
 #' @useDynLib degreedays
 #' @importFrom Rcpp evalCpp
-bins_ss <- function(t0, t1, tmin, tmax){
-  out <- data.frame(degreedays:::days_in_bin_daily(t0, t1, tmin, tmax))
+bins_ss <- function(t0, t1, tmin, tmax, parallel = FALSE){
+  if(parallel){
+    out <- data.frame(degreedays:::days_in_bin_daily_par(t0, t1, tmin, tmax))
+  } else {
+    out <- data.frame(degreedays:::days_in_bin_daily(t0, t1, tmin, tmax))
+  }
+
   bin_bottoms_names <- gsub("-", "n", as.character(t0))
   bin_tops_names <- gsub("-", "n", as.character(t1))
   names(out) <- paste0("bin_", bin_bottoms_names, "_", bin_tops_names)

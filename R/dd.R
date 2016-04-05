@@ -6,8 +6,14 @@
 #' @export
 #' @useDynLib degreedays
 #' @importFrom Rcpp evalCpp
-dd_band_ss <- function(t0, t1, tmin, tmax){
-  out <- data.frame(degreedays:::degree_days_band_daily(t0, t1, tmin, tmax))
+#' @importFrom RcppParallel RcppParallelLibs
+dd_band_ss <- function(t0, t1, tmin, tmax, parallel = FALSE){
+  if(parallel){
+    out <- data.frame(degreedays:::degree_days_band_daily_par(t0, t1, tmin, tmax))
+  } else {
+    out <- data.frame(degreedays:::degree_days_band_daily(t0, t1, tmin, tmax))
+  }
+
   dd_bottoms_names <- gsub("-", "n", as.character(t0))
   dd_tops_names <- gsub("-", "n", as.character(t1))
   names(out) <- paste0("dd_", dd_bottoms_names, "_", dd_tops_names)

@@ -8,9 +8,10 @@ Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
 LazyData: TRUE
-LinkingTo: Rcpp
+LinkingTo: Rcpp, RcppParallel
 Imports:
-    Rcpp
+    Rcpp, RcppParallel
 Suggests:
     testthat
 RoxygenNote: 5.0.1
+SystemRequirements: GNU make

@@ -57,31 +57,59 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// degree_days_band
-NumericVector degree_days_band(NumericVector t0, NumericVector t1, double tmin, double tmax);
-RcppExport SEXP degreedays_degree_days_band(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+// degree_days_one
+double degree_days_one(double t0, double t1, double tmin, double tmax);
+RcppExport SEXP degreedays_degree_days_one(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type t0(t0SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type t1(t1SEXP);
+    Rcpp::traits::input_parameter< double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< double >::type t1(t1SEXP);
     Rcpp::traits::input_parameter< double >::type tmin(tminSEXP);
     Rcpp::traits::input_parameter< double >::type tmax(tmaxSEXP);
-    __result = Rcpp::wrap(degree_days_band(t0, t1, tmin, tmax));
+    __result = Rcpp::wrap(degree_days_one(t0, t1, tmin, tmax));
     return __result;
 END_RCPP
 }
-// days_in_bin
-NumericVector days_in_bin(NumericVector t0, NumericVector t1, double tmin, double tmax);
-RcppExport SEXP degreedays_days_in_bin(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+// degree_days_band_daily
+NumericMatrix degree_days_band_daily(NumericVector t0, NumericVector t1, NumericVector tmin, NumericVector tmax);
+RcppExport SEXP degreedays_degree_days_band_daily(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< NumericVector >::type t0(t0SEXP);
     Rcpp::traits::input_parameter< NumericVector >::type t1(t1SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmin(tminSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmax(tmaxSEXP);
+    __result = Rcpp::wrap(degree_days_band_daily(t0, t1, tmin, tmax));
+    return __result;
+END_RCPP
+}
+// degree_days_band_daily_par
+NumericMatrix degree_days_band_daily_par(NumericVector t0, NumericVector t1, NumericVector tmin, NumericVector tmax);
+RcppExport SEXP degreedays_degree_days_band_daily_par(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type t1(t1SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmin(tminSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmax(tmaxSEXP);
+    __result = Rcpp::wrap(degree_days_band_daily_par(t0, t1, tmin, tmax));
+    return __result;
+END_RCPP
+}
+// days_in_bin_one
+double days_in_bin_one(double t0, double t1, double tmin, double tmax);
+RcppExport SEXP degreedays_days_in_bin_one(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< double >::type t1(t1SEXP);
     Rcpp::traits::input_parameter< double >::type tmin(tminSEXP);
     Rcpp::traits::input_parameter< double >::type tmax(tmaxSEXP);
-    __result = Rcpp::wrap(days_in_bin(t0, t1, tmin, tmax));
+    __result = Rcpp::wrap(days_in_bin_one(t0, t1, tmin, tmax));
     return __result;
 END_RCPP
 }
@@ -99,9 +127,9 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// degree_days_band_daily
-NumericMatrix degree_days_band_daily(NumericVector t0, NumericVector t1, NumericVector tmin, NumericVector tmax);
-RcppExport SEXP degreedays_degree_days_band_daily(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+// days_in_bin_daily_par
+NumericMatrix days_in_bin_daily_par(NumericVector t0, NumericVector t1, NumericVector tmin, NumericVector tmax);
+RcppExport SEXP degreedays_days_in_bin_daily_par(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -109,7 +137,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type t1(t1SEXP);
     Rcpp::traits::input_parameter< NumericVector >::type tmin(tminSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type tmax(tmaxSEXP);
-    __result = Rcpp::wrap(degree_days_band_daily(t0, t1, tmin, tmax));
+    __result = Rcpp::wrap(days_in_bin_daily_par(t0, t1, tmin, tmax));
     return __result;
 END_RCPP
 }
