@@ -6,19 +6,17 @@
 #' @export
 #' @useDynLib degreedays
 #' @importFrom Rcpp evalCpp
-bins_ss <- function(t0, t1, tmin, tmax, weights = NULL, parallel = FALSE){
+poly_ss <- function(tmin, tmax, degree, weights = NULL, parallel = FALSE){
   if(is.null(weights)){
     # rep fails with length(tmin) > .Machine$integer.max
     weights <- tmin*0 + 1
   }
   if(parallel){
-    out <- data.frame(degreedays:::days_in_bin_daily_par(t0, t1, tmin, tmax, weights))
+    out <- degreedays:::sin_poly_temp_par(tmin, tmax, 1:degree, weights)
   } else {
-    out <- data.frame(degreedays:::days_in_bin_daily(t0, t1, tmin, tmax, weights))
+    out <- sapply(1:degree, function(x) degreedays:::sin_poly_temp(tmin, tmax, x, weights))
   }
-
-  bin_bottoms_names <- gsub("-", "n", as.character(t0))
-  bin_tops_names <- gsub("-", "n", as.character(t1))
-  names(out) <- paste0("bin_", bin_bottoms_names, "_", bin_tops_names)
+  out <- data.frame(out)
+  names(out) <- paste0("poly_", 1:degree)
   out
 }

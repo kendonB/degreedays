@@ -7,11 +7,15 @@
 #' @useDynLib degreedays
 #' @importFrom Rcpp evalCpp
 #' @importFrom RcppParallel RcppParallelLibs
-dd_band_ss <- function(t0, t1, tmin, tmax, parallel = FALSE){
+dd_band_ss <- function(t0, t1, tmin, tmax, weights = NULL, parallel = FALSE){
+  if(is.null(weights)){
+    # rep fails with length(tmin) > .Machine$integer.max
+    weights <- tmin*0 + 1
+  }
   if(parallel){
-    out <- data.frame(degreedays:::degree_days_band_daily_par(t0, t1, tmin, tmax))
+    out <- data.frame(degreedays:::degree_days_band_daily_par(t0, t1, tmin, tmax, weights))
   } else {
-    out <- data.frame(degreedays:::degree_days_band_daily(t0, t1, tmin, tmax))
+    out <- data.frame(degreedays:::degree_days_band_daily(t0, t1, tmin, tmax, weights))
   }
 
   dd_bottoms_names <- gsub("-", "n", as.character(t0))

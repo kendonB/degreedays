@@ -15,6 +15,18 @@ sin_int_estimate_NumericVector <- function(x, tmin, tmax) {
     .Call('degreedays_sin_int_estimate_NumericVector', PACKAGE = 'degreedays', x, tmin, tmax)
 }
 
+sin_poly_temp_one <- function(tmin, tmax, degree, weight) {
+    .Call('degreedays_sin_poly_temp_one', PACKAGE = 'degreedays', tmin, tmax, degree, weight)
+}
+
+sin_poly_temp <- function(tmin, tmax, degree, weights) {
+    .Call('degreedays_sin_poly_temp', PACKAGE = 'degreedays', tmin, tmax, degree, weights)
+}
+
+sin_poly_temp_par <- function(tmin, tmax, degree, weights) {
+    .Call('degreedays_sin_poly_temp_par', PACKAGE = 'degreedays', tmin, tmax, degree, weights)
+}
+
 sin_estimate <- function(x, tmin, tmax) {
     .Call('degreedays_sin_estimate', PACKAGE = 'degreedays', x, tmin, tmax)
 }
@@ -23,8 +35,8 @@ sin_int_estimate <- function(x, tmin, tmax) {
     .Call('degreedays_sin_int_estimate', PACKAGE = 'degreedays', x, tmin, tmax)
 }
 
-degree_days_one <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_degree_days_one', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+degree_days_one <- function(t0, t1, tmin, tmax, weight) {
+    .Call('degreedays_degree_days_one', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weight)
 }
 
 #' @title Calculate degree days for daily data.
@@ -33,17 +45,19 @@ degree_days_one <- function(t0, t1, tmin, tmax) {
 #' @param t1 vector of upper bounds
 #' @param tmin vector of tmin values (1 per day)
 #' @param tmax vector of tmax values (1 per day)
+#' @param tmax vector of tmax values (1 per day)
+#' @param weights vector of optional weights to multiply output by. Default is 1.
 #' @return num_days x num_bins \code{matrix}
-degree_days_band_daily <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_degree_days_band_daily', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+degree_days_band_daily <- function(t0, t1, tmin, tmax, weights) {
+    .Call('degreedays_degree_days_band_daily', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weights)
 }
 
-degree_days_band_daily_par <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_degree_days_band_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+degree_days_band_daily_par <- function(t0, t1, tmin, tmax, weights) {
+    .Call('degreedays_degree_days_band_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weights)
 }
 
-days_in_bin_one <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_days_in_bin_one', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+days_in_bin_one <- function(t0, t1, tmin, tmax, weight) {
+    .Call('degreedays_days_in_bin_one', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weight)
 }
 
 #' @title Calculate days in bin for daily data.
@@ -53,11 +67,17 @@ days_in_bin_one <- function(t0, t1, tmin, tmax) {
 #' @param tmin vector of tmin values (1 per day)
 #' @param tmax vector of tmax values (1 per day)
 #' @return num_days x num_bins \code{matrix}
-days_in_bin_daily <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_days_in_bin_daily', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+days_in_bin_daily <- function(t0, t1, tmin, tmax, weights) {
+    .Call('degreedays_days_in_bin_daily', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weights)
 }
 
-days_in_bin_daily_par <- function(t0, t1, tmin, tmax) {
-    .Call('degreedays_days_in_bin_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax)
+days_in_bin_daily_par <- function(t0, t1, tmin, tmax, weights) {
+    .Call('degreedays_days_in_bin_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weights)
+}
+
+#' @title Inner product calculator
+#' @export
+parInnProd <- function(x, y) {
+    .Call('degreedays_parInnProd', PACKAGE = 'degreedays', x, y)
 }
 
