@@ -1,14 +1,10 @@
 #include <Rcpp.h>
 #include <math.h>
 #include <Rmath.h>
-#include <RcppParallel.h>
 
 // [[Rcpp::depends(RcppParallel)]]
 #include <RcppParallel.h>
 using namespace RcppParallel;
-using namespace Rcpp;
-
-#include <Rcpp.h>
 using namespace Rcpp;
 
 #include <cmath>
@@ -506,6 +502,7 @@ double parInnProd(NumericVector x, NumericVector y) {
   // return the computed product
   return innerProduct.product;
 }
+
 
 /*** R
 
