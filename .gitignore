@@ -3,3 +3,6 @@
 .Rproj.user*
 *.Rproj
 .Rproj.user
+*.dll
+*.so
+*.o
