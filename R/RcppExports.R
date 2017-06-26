@@ -56,27 +56,6 @@ spl1_band_daily_par <- function(t0, t1, tmin, tmax, weights) {
     .Call('degreedays_spl1_band_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weights)
 }
 
-spl3_one <- function(t0, tmin, tmax, weight) {
-    .Call('degreedays_spl3_one', PACKAGE = 'degreedays', t0, tmin, tmax, weight)
-}
-
-#' @title Calculate degree days/degree-3 splines for daily data.
-#' @description Calculate degree days/degree-3 splines for daily data using C++ code.
-#' @param t0 vector of lower bounds
-#' @param t1 vector of upper bounds
-#' @param tmin vector of tmin values (1 per day)
-#' @param tmax vector of tmax values (1 per day)
-#' @param tmax vector of tmax values (1 per day)
-#' @param weights vector of optional weights to multiply output by. Default is 1.
-#' @return num_days x num_bins \code{matrix}
-spl3_band_daily <- function(t0, t1, tmin, tmax, weights) {
-    .Call('degreedays_spl3_band_daily', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weights)
-}
-
-spl3_band_daily_par <- function(t0, t1, tmin, tmax, weights) {
-    .Call('degreedays_spl3_band_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weights)
-}
-
 days_in_bin_one <- function(t0, t1, tmin, tmax, weight) {
     .Call('degreedays_days_in_bin_one', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weight)
 }

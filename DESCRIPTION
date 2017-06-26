@@ -10,7 +10,8 @@ License: What license is it under?
 LazyData: TRUE
 LinkingTo: Rcpp, RcppParallel
 Imports:
-    Rcpp, RcppParallel
+    Rcpp,
+    RcppParallel
 Suggests:
     testthat
 RoxygenNote: 5.0.1
