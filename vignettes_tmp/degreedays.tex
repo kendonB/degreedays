@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amstext}
+
+\usepackage{amsthm}
+% Adds assumptions
+\usepackage{amsthm}
+\newtheorem{assumption}{Assumption}
+
+
+% For Times New Roman font
+%\usepackage{mathptmx}
+
+% Allows for bold italic in math mode
+\usepackage{bm}
+
+\usepackage{enumerate}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  citecolor = blue
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf, .png}
+\usepackage{setspace}
+\usepackage[margin=1in]{geometry}
+\allowdisplaybreaks[1]
+\usepackage{dcolumn}
+\setlength{\parindent}{0pt}
+\usepackage{parskip}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{makecell}
+\usepackage{hanging}
+
+% For appending pdfs.-
+\usepackage{pdfpages}
+
+% Gives the \FloatBarrier command
+\usepackage{placeins}
+
+% For coloring table rows.
+\usepackage{xcolor,colortbl}
+
+% For blackboard bold 1:
+\usepackage{bbm}
+
+% Stylizing captions
+\usepackage{caption}
+\captionsetup{
+    font = bf,
+}
+
+% For tables with notes and titles
+\usepackage{fixltx2e}
+\usepackage[flushleft]{threeparttable}
+
+\usepackage{bm}
+
+% For more justify options
+\usepackage{ragged2e}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{Dairy and Temperature.bib}
+
+% For vertically spacing rows in tables.
+\usepackage{array,booktabs}
+\usepackage{tabulary}
+\setlength{\tymin}{0.08\textwidth}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+% Provides the ubar command
+\usepackage{accents}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\rfoot{Page \thepage}
+
+% Allows for H float option which puts float in text
+\usepackage{float}
+
+% This makes the tabulary package work with
+% p columns.
+\setlength\extrarowheight{2pt}
+\makeatletter
+\def\z#14#2!!{\def\TY@classz{#17#2}}
+\expandafter\z\TY@classz!!
+\makeatother
+
+%opening
+\title{}
+\author{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Restricted cubic spline}
+The usual specification for a restricted cubic spline is the following, where $(u)_{+} = u$ if $u > 0$  and $(u)_{+} = 0$ if $u \leq 0$:
+
+\begin{equation}\label{eq:cubic_spline_standard}
+x_{i} = (x - t_{i})^3_{+} - (x - t_{k-1})^3_{+}\dfrac{t_{k} - t_{i}}{t_{k} - t_{k-1}}  (x - t_{k})^3_{+}\dfrac{t_{k - 1} - t_{i}}{t_{k} - t_{k - 1}}, \quad i = 1, \dots, k - 2.
+\end{equation}
+To combine this with sine interpolation of temperature, we simply need to integrate the following expression:
+\begin{equation}\label{eq:cubic_spline_sine_interpolation}
+x_{i}^{ss} = 2\int_{0}^{\pi}S_{ss} dS_{ss}
+\end{equation}
+\end{document}

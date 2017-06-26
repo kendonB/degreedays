@@ -1,7 +1,7 @@
-#' @title Calculate degree bins using the single sine method.
+#' @title Calculate degree polynomials using the single sine method.
 #' @description C++ function for calculating a data.frame
-#' of degree bins for vectors of tmin / tmax, and vectors of bins bounds.
-#' @inheritParams degree_days_band_daily
+#' of degree polynomials for vectors of tmin / tmax.
+#' @inheritParams spl1_band_daily
 #' @return \code{data.frame} with degree days.
 #' @export
 #' @useDynLib degreedays

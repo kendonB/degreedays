@@ -6,17 +6,6 @@
 \usage{
 bins_ss(t0, t1, tmin, tmax, weights = NULL, parallel = FALSE)
 }
-\arguments{
-\item{t0}{vector of lower bounds}
-
-\item{t1}{vector of upper bounds}
-
-\item{tmin}{vector of tmin values (1 per day)}
-
-\item{tmax}{vector of tmax values (1 per day)}
-
-\item{weights}{vector of optional weights to multiply output by. Default is 1.}
-}
 \value{
 \code{data.frame} with degree days.
 }

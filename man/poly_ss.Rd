@@ -2,7 +2,7 @@
 % Please edit documentation in R/polys.R
 \name{poly_ss}
 \alias{poly_ss}
-\title{Calculate degree bins using the single sine method.}
+\title{Calculate degree polynomials using the single sine method.}
 \usage{
 poly_ss(tmin, tmax, degree, weights = NULL, parallel = FALSE)
 }
@@ -18,6 +18,6 @@ poly_ss(tmin, tmax, degree, weights = NULL, parallel = FALSE)
 }
 \description{
 C++ function for calculating a data.frame
-of degree bins for vectors of tmin / tmax, and vectors of bins bounds.
+of degree polynomials for vectors of tmin / tmax.
 }
 
