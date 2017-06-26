@@ -27,7 +27,7 @@ using namespace Rcpp;
 //' @return Vector of interpolated sine values.
 // [[Rcpp::export]]
 NumericVector sin_estimate_NumericVector(NumericVector x, double tmin, double tmax) {
-  double shift = 6.0 / 24.0;
+  double shift = 6.0 / 24.0 + 0.0;
   std::size_t n = x.size();
   NumericVector out(n);
   for(std::size_t i = 0; i < n; ++i) {
