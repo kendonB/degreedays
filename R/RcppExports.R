@@ -35,6 +35,10 @@ sin_int_estimate <- function(x, tmin, tmax) {
     .Call('degreedays_sin_int_estimate', PACKAGE = 'degreedays', x, tmin, tmax)
 }
 
+sin_cubed_int_estimate <- function(x, tmin, tmax) {
+    .Call('degreedays_sin_cubed_int_estimate', PACKAGE = 'degreedays', x, tmin, tmax)
+}
+
 spl1_one <- function(t0, t1, tmin, tmax, weight) {
     .Call('degreedays_spl1_one', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weight)
 }
@@ -54,6 +58,26 @@ spl1_band_daily <- function(t0, t1, tmin, tmax, weights) {
 
 spl1_band_daily_par <- function(t0, t1, tmin, tmax, weights) {
     .Call('degreedays_spl1_band_daily_par', PACKAGE = 'degreedays', t0, t1, tmin, tmax, weights)
+}
+
+spl3_one <- function(t0, tmin, tmax, weight) {
+    .Call('degreedays_spl3_one', PACKAGE = 'degreedays', t0, tmin, tmax, weight)
+}
+
+#' @title Calculate degree days/degree-3 splines for daily data.
+#' @description Calculate degree days/degree-3 splines for daily data using C++ code.
+#' @param t0 vector of lower bounds
+#' @param tmin vector of tmin values (1 per day)
+#' @param tmax vector of tmax values (1 per day)
+#' @param tmax vector of tmax values (1 per day)
+#' @param weights vector of optional weights to multiply output by. Default is 1.
+#' @return num_days x num_bands \code{matrix}
+spl3_band_daily <- function(t0, tmin, tmax, weights) {
+    .Call('degreedays_spl3_band_daily', PACKAGE = 'degreedays', t0, tmin, tmax, weights)
+}
+
+spl3_band_daily_par <- function(t0, tmin, tmax, weights) {
+    .Call('degreedays_spl3_band_daily_par', PACKAGE = 'degreedays', t0, tmin, tmax, weights)
 }
 
 days_in_bin_one <- function(t0, t1, tmin, tmax, weight) {

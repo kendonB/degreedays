@@ -1,9 +1,9 @@
 [0] Config.pm:354> INFO - This is Biber 2.7
-[0] Config.pm:357> INFO - Logfile is 'degreedays.blg'
-[50] biber-MSWIN32:303> INFO - === 
-[73] Biber.pm:359> INFO - Reading 'degreedays.bcf'
-[183] Biber.pm:835> INFO - Found 0 citekeys in bib section 0
-[191] Utils.pm:164> WARN - The file 'degreedays.bcf' does not contain any citations!
-[199] bbl.pm:608> INFO - Writing 'degreedays.bbl' with encoding 'UTF-8'
-[199] bbl.pm:712> INFO - Output to degreedays.bbl
-[200] Biber.pm:109> INFO - WARNINGS: 1
+[1] Config.pm:357> INFO - Logfile is 'degreedays.blg'
+[53] biber-MSWIN32:303> INFO - === 
+[91] Biber.pm:359> INFO - Reading 'degreedays.bcf'
+[192] Biber.pm:835> INFO - Found 0 citekeys in bib section 0
+[205] Utils.pm:164> WARN - The file 'degreedays.bcf' does not contain any citations!
+[214] bbl.pm:608> INFO - Writing 'degreedays.bbl' with encoding 'UTF-8'
+[214] bbl.pm:712> INFO - Output to degreedays.bbl
+[215] Biber.pm:109> INFO - WARNINGS: 1

@@ -200,6 +200,20 @@ double sin_int_estimate(double x, double tmin, double tmax) {
 }
 
 // [[Rcpp::export]]
+double sin_cubed_int_estimate(double x, double tmin, double tmax) {
+  double shift = 6.0 / 24.0;
+  // Calculated at http://www.integral-calculator.com/
+  double a = (tmax - tmax) / 2.0;
+  double b = 2.0 * M_PI;
+  double c = shift;
+  double d = (tmax + tmin) / 2.0;
+  return (pow(a, 3.0)*cos(3.0*b*(x-c))-
+          9.0*pow(a, 2.0)*d*sin(2.0*b*(x-c))-
+          9.0*a*(4.0*pow(d, 2.0)+pow(a,2.0))*cos(b*(x-c))+
+          6.0*b*d*(2.0*pow(d, 2.0)+3*pow(a, 2.0))*x)/(12.0*b);
+}
+
+// [[Rcpp::export]]
 double spl1_one(double t0, double t1,
                 double tmin, double tmax, double weight) {
   if(tmin > tmax){
@@ -215,7 +229,7 @@ double spl1_one(double t0, double t1,
   } else if (tmax == tmin && t0 == tmax){
     // Strange case where tmax == tmin and they're on the bottom border of
     // a band.
-    out = 0;
+    out = 0.0;
   } else if (t0 <= tmin && t1 >= tmax) {
     // Case A where the band bounds the entire day's temperature range.
     double m = (tmax + tmin) / 2.0;
@@ -334,140 +348,119 @@ NumericMatrix spl1_band_daily_par(NumericVector t0, NumericVector t1,
   return output;
 }
 
-// // [[Rcpp::export]]
-// double spl3_one(double t0, double tmin,
-//                 double tmax, double weight) {
-//   if(tmin > tmax){
-//     throw std::invalid_argument("tmin > tmax");
-//   }
-//   double out;
-//   if (R_IsNA(tmin) || R_IsNA(tmax)){
-//     out = NA_REAL;
-//   } else if (tmax == tmin && t1 == tmax){
-//     // Strange case where tmax == tmin and they're on the top border of
-//     // a band.
-//     out = t1 - t0;
-//   } else if (tmax == tmin && t0 == tmax){
-//     // Strange case where tmax == tmin and they're on the bottom border of
-//     // a band.
-//     out = 0;
-//   } else if (t0 <= tmin && t1 >= tmax) {
-//     // Case A where the band bounds the entire day's temperature range.
-//     double m = (tmax + tmin) / 2.0;
-//     out = m - t0;
-//   } else if (t0 > tmin && t1 >= tmax && t0 < tmax) {
-//     // Case B where the band straddles the tmax value.
-//     double w = (tmax - tmin) / 2.0;
-//     double m = (tmax + tmin) / 2.0;
-//     double shift = 6.0 / 24.0;
-//     double theta_1 = asin((t0 - m) / w) / (2.0 * M_PI) + shift;
-//     double first_part = 2.0 * (sin_int_estimate(12.0 / 24.0, tmin, tmax) -
-//                                sin_int_estimate(theta_1, tmin, tmax));
-//     double second_part = t0 * 2.0 * (12.0 / 24.0 - theta_1);
-//     out = first_part - second_part;
-//   } else if (t1 < tmax && t1 >= tmin) {
-//     // Case C where the band is contained in the bounds of tmin and tmax
-//     // and the Case (not in Baskerville and Emin) where
-//     // the band straddles the tmin value.
-//     double tmpt0, tmpt1, outt0, outt1, infty;
-//     tmpt0 = t0;
-//     tmpt1 = t1;
-//     infty = std::numeric_limits<double>::infinity();
-//     outt0 = spl1_one(tmpt0, infty, tmin, tmax, 1.0);
-//     outt1 = spl1_one(tmpt1, infty, tmin, tmax, 1.0);
-//     out = outt0 - outt1;
-//   } else if (t1 < tmin) {
-//     // Band is below the minimum temperature.
-//     out = 1.0 * (t1 - t0);
-//   } else if (t0 >= tmax) {
-//     // Band is above the maximum temperature.
-//     out = 0.0;
-//   } else {
-//     throw std::invalid_argument("received incorrect t0/t1/tmax/tmin numbers");
-//   }
-//   out = out * weight;
-//   return out;
-// }
-//
-// //' @title Calculate degree days/degree-3 splines for daily data.
-// //' @description Calculate degree days/degree-3 splines for daily data using C++ code.
-// //' @param t0 vector of lower bounds
-// //' @param t1 vector of upper bounds
-// //' @param tmin vector of tmin values (1 per day)
-// //' @param tmax vector of tmax values (1 per day)
-// //' @param tmax vector of tmax values (1 per day)
-// //' @param weights vector of optional weights to multiply output by. Default is 1.
-// //' @return num_days x num_bins \code{matrix}
-// // [[Rcpp::export]]
-// NumericMatrix spl3_band_daily(NumericVector t0, NumericVector t1,
-//                               NumericVector tmin, NumericVector tmax,
-//                               NumericVector weights){
-//   if (t0.size() != t1.size()) {
-//     throw std::invalid_argument("Lengths of t0 and t1 differ.");
-//   }
-//   if (tmin.size() != tmax.size()) {
-//     throw std::invalid_argument("Lengths of tmin and tmax differ.");
-//   }
-//
-//   std::size_t nrow = tmin.size(), ncol = t0.size();
-//   NumericMatrix out(nrow, ncol);
-//   for (std::size_t i = 0; i < nrow; ++i) {
-//     for (std::size_t j = 0; j < ncol; ++j) {
-//       out(i, j) = spl1_one(t0[j], t1[j], tmin[i], tmax[i], weights[i]);
-//     }
-//   }
-//   return out;
-// }
-//
-// struct Spl3 : public Worker {
-//
-//   // input matrix to read from
-//   const RVector<double> t0;
-//   const RVector<double> t1;
-//   const RVector<double> tmin;
-//   const RVector<double> tmax;
-//   const RVector<double> weights;
-//
-//   // output matrix to write to
-//   RMatrix<double> output;
-//
-//   // initialize from Rcpp input and output matrixes (the RMatrix class
-//   // can be automatically converted to from the Rcpp matrix type)
-//   Spl3(const NumericVector t0, const NumericVector t1,
-//          const NumericVector tmin, const NumericVector tmax,
-//          const NumericVector weights,
-//          NumericMatrix output)
-//     : t0(t0), t1(t1), tmin(tmin), tmax(tmax), weights(weights), output(output) {}
-//
-//   // function call operator that work for the specified range (begin/end)
-//   void operator()(std::size_t begin, std::size_t end) {
-//     for (std::size_t i = begin; i < end; i++) {
-//       for(std::size_t j = 0; j < t0.size(); j++){
-//         // write to output matrix
-//         output(i,j) = spl1_one(t0[j], t1[j], tmin[i], tmax[i], weights[i]);
-//       }
-//     }
-//   }
-// };
-//
-// // [[Rcpp::export]]
-// NumericMatrix spl3_band_daily_par(NumericVector t0, NumericVector t1,
-//                                   NumericVector tmin, NumericVector tmax,
-//                                   NumericVector weights) {
-//
-//   // allocate the output matrix
-//   std::size_t nrow = tmin.size(), ncol = t0.size();
-//   NumericMatrix output(nrow, ncol);
-//
-//   // SquareRoot functor (pass input and output matrixes)
-//   Spl3 spl3(t0, t1, tmin, tmax, weights, output);
-//
-//   parallelFor(0, nrow, spl3);
-//   // call parallelFor to do the work
-//
-//   // return the output matrix
-//   return output;
-// }
+// [[Rcpp::export]]
+double spl3_one(double t0, double tmin,
+                double tmax, double weight) {
+  if(tmin > tmax){
+    throw std::invalid_argument("tmin > tmax");
+  }
+  double out;
+  if (R_IsNA(tmin) || R_IsNA(tmax)){
+    out = NA_REAL;
+  } else if (tmax == tmin && t0 == tmax){
+    // Strange case where tmax == tmin and they're on the bottom border of
+    // the band.
+    out = 0.0;
+  } else if (t0 > tmin && t0 < tmax) {
+    // Case B where the band straddles the tmax value.
+    double w = (tmax - tmin) / 2.0;
+    double m = (tmax + tmin) / 2.0;
+    double shift = 6.0 / 24.0;
+    double theta_1 = asin((t0 - m) / w) / (2.0 * M_PI) + shift;
+    double first_part = 2.0 * (sin_cubed_int_estimate(12.0 / 24.0, tmin, tmax) -
+                               sin_cubed_int_estimate(theta_1, tmin, tmax));
+    double second_part = t0 * 2.0 * (12.0 / 24.0 - theta_1);
+    out = first_part - second_part;
+  } else if (t0 >= tmax) {
+    // Band is above the maximum temperature.
+    out = 0.0;
+  } else if (t0 <= tmin) {
+    // Case A where the band bounds the entire day's temperature range.
+    double m = (tmax + tmin) / 2.0;
+    double w = (tmax - tmin) / 2.0;
+    double d = m - t0;
+    return pow(d, 3.0)+3*pow(w, 2.0)*d/2.0;
+  } else {
+    throw std::invalid_argument("received incorrect t0/tmax/tmin numbers");
+  }
+  out = out * weight;
+  return out;
+}
+
+//' @title Calculate degree days/degree-3 splines for daily data.
+//' @description Calculate degree days/degree-3 splines for daily data using C++ code.
+//' @param t0 vector of lower bounds
+//' @param tmin vector of tmin values (1 per day)
+//' @param tmax vector of tmax values (1 per day)
+//' @param tmax vector of tmax values (1 per day)
+//' @param weights vector of optional weights to multiply output by. Default is 1.
+//' @return num_days x num_bands \code{matrix}
+// [[Rcpp::export]]
+NumericMatrix spl3_band_daily(NumericVector t0,
+                              NumericVector tmin, NumericVector tmax,
+                              NumericVector weights){
+  if (tmin.size() != tmax.size()) {
+    throw std::invalid_argument("Lengths of tmin and tmax differ.");
+  }
+
+  std::size_t nrow = tmin.size(), ncol = t0.size();
+  NumericMatrix out(nrow, ncol);
+  for (std::size_t i = 0; i < nrow; ++i) {
+    for (std::size_t j = 0; j < ncol; ++j) {
+      out(i, j) = spl3_one(t0[j], tmin[i], tmax[i], weights[i]);
+    }
+  }
+  return out;
+}
+
+struct Spl3 : public Worker {
+
+  // input matrix to read from
+  const RVector<double> t0;
+  const RVector<double> tmin;
+  const RVector<double> tmax;
+  const RVector<double> weights;
+
+  // output matrix to write to
+  RMatrix<double> output;
+
+  // initialize from Rcpp input and output matrixes (the RMatrix class
+  // can be automatically converted to from the Rcpp matrix type)
+  Spl3(const NumericVector t0,
+         const NumericVector tmin, const NumericVector tmax,
+         const NumericVector weights,
+         NumericMatrix output)
+    : t0(t0), tmin(tmin), tmax(tmax), weights(weights), output(output) {}
+
+  // function call operator that work for the specified range (begin/end)
+  void operator()(std::size_t begin, std::size_t end) {
+    for (std::size_t i = begin; i < end; i++) {
+      for(std::size_t j = 0; j < t0.size(); j++){
+        // write to output matrix
+        output(i,j) = spl3_one(t0[j], tmin[i], tmax[i], weights[i]);
+      }
+    }
+  }
+};
+
+// [[Rcpp::export]]
+NumericMatrix spl3_band_daily_par(NumericVector t0,
+                                  NumericVector tmin, NumericVector tmax,
+                                  NumericVector weights) {
+
+  // allocate the output matrix
+  std::size_t nrow = tmin.size(), ncol = t0.size();
+  NumericMatrix output(nrow, ncol);
+
+  // SquareRoot functor (pass input and output matrixes)
+  Spl3 spl3(t0, tmin, tmax, weights, output);
+
+  parallelFor(0, nrow, spl3);
+  // call parallelFor to do the work
+
+  // return the output matrix
+  return output;
+}
 
 // [[Rcpp::export]]
 double days_in_bin_one(double t0, double t1,

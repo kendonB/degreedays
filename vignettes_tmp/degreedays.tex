@@ -111,10 +111,14 @@
 The usual specification for a restricted cubic spline is the following, where $(u)_{+} = u$ if $u > 0$  and $(u)_{+} = 0$ if $u \leq 0$:
 
 \begin{equation}\label{eq:cubic_spline_standard}
-x_{i} = (x - t_{i})^3_{+} - (x - t_{k-1})^3_{+}\dfrac{t_{k} - t_{i}}{t_{k} - t_{k-1}}  (x - t_{k})^3_{+}\dfrac{t_{k - 1} - t_{i}}{t_{k} - t_{k - 1}}, \quad i = 1, \dots, k - 2.
+x_{i} = \mbox{rcs}(x, t_{i}, t_{k}, t_{k - 1}) = (x - t_{i})^3_{+} - (x - t_{k-1})^3_{+}\dfrac{t_{k} - t_{i}}{t_{k} - t_{k-1}} + (x - t_{k})^3_{+}\dfrac{t_{k - 1} - t_{i}}{t_{k} - t_{k - 1}}, \quad i = 1, \dots, k - 2.
 \end{equation}
 To combine this with sine interpolation of temperature, we simply need to integrate the following expression:
 \begin{equation}\label{eq:cubic_spline_sine_interpolation}
-x_{i}^{ss} = 2\int_{0}^{\pi}S_{ss} dS_{ss}
+x_{i}^{ss} = 2\int_{0}^{12}\mbox{rcs}(S_{ss}(r))dr
+\end{equation}
+where $r$ denotes the time of the day.
+\begin{equation}\label{eq:cubic_spline_sine_interpolation2}
+x_{i}^{ss} = 2
 \end{equation}
 \end{document}

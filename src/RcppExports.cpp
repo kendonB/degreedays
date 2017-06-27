@@ -99,6 +99,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sin_cubed_int_estimate
+double sin_cubed_int_estimate(double x, double tmin, double tmax);
+RcppExport SEXP degreedays_sin_cubed_int_estimate(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type tmin(tminSEXP);
+    Rcpp::traits::input_parameter< double >::type tmax(tmaxSEXP);
+    rcpp_result_gen = Rcpp::wrap(sin_cubed_int_estimate(x, tmin, tmax));
+    return rcpp_result_gen;
+END_RCPP
+}
 // spl1_one
 double spl1_one(double t0, double t1, double tmin, double tmax, double weight);
 RcppExport SEXP degreedays_spl1_one(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightSEXP) {
@@ -141,6 +154,48 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type tmax(tmaxSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type weights(weightsSEXP);
     rcpp_result_gen = Rcpp::wrap(spl1_band_daily_par(t0, t1, tmin, tmax, weights));
+    return rcpp_result_gen;
+END_RCPP
+}
+// spl3_one
+double spl3_one(double t0, double tmin, double tmax, double weight);
+RcppExport SEXP degreedays_spl3_one(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< double >::type tmin(tminSEXP);
+    Rcpp::traits::input_parameter< double >::type tmax(tmaxSEXP);
+    Rcpp::traits::input_parameter< double >::type weight(weightSEXP);
+    rcpp_result_gen = Rcpp::wrap(spl3_one(t0, tmin, tmax, weight));
+    return rcpp_result_gen;
+END_RCPP
+}
+// spl3_band_daily
+NumericMatrix spl3_band_daily(NumericVector t0, NumericVector tmin, NumericVector tmax, NumericVector weights);
+RcppExport SEXP degreedays_spl3_band_daily(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmin(tminSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmax(tmaxSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type weights(weightsSEXP);
+    rcpp_result_gen = Rcpp::wrap(spl3_band_daily(t0, tmin, tmax, weights));
+    return rcpp_result_gen;
+END_RCPP
+}
+// spl3_band_daily_par
+NumericMatrix spl3_band_daily_par(NumericVector t0, NumericVector tmin, NumericVector tmax, NumericVector weights);
+RcppExport SEXP degreedays_spl3_band_daily_par(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmin(tminSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmax(tmaxSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type weights(weightsSEXP);
+    rcpp_result_gen = Rcpp::wrap(spl3_band_daily_par(t0, tmin, tmax, weights));
     return rcpp_result_gen;
 END_RCPP
 }
