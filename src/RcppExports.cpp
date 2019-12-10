@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // sin_estimate_NumericVector
 NumericVector sin_estimate_NumericVector(NumericVector x, double tmin, double tmax);
-RcppExport SEXP degreedays_sin_estimate_NumericVector(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+RcppExport SEXP _degreedays_sin_estimate_NumericVector(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,7 +20,7 @@ END_RCPP
 }
 // sin_int_estimate_NumericVector
 NumericVector sin_int_estimate_NumericVector(NumericVector x, double tmin, double tmax);
-RcppExport SEXP degreedays_sin_int_estimate_NumericVector(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+RcppExport SEXP _degreedays_sin_int_estimate_NumericVector(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -33,7 +33,7 @@ END_RCPP
 }
 // sin_poly_temp_one
 double sin_poly_temp_one(double tmin, double tmax, double degree, double weight);
-RcppExport SEXP degreedays_sin_poly_temp_one(SEXP tminSEXP, SEXP tmaxSEXP, SEXP degreeSEXP, SEXP weightSEXP) {
+RcppExport SEXP _degreedays_sin_poly_temp_one(SEXP tminSEXP, SEXP tmaxSEXP, SEXP degreeSEXP, SEXP weightSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -47,7 +47,7 @@ END_RCPP
 }
 // sin_poly_temp
 NumericVector sin_poly_temp(NumericVector tmin, NumericVector tmax, double degree, NumericVector weights);
-RcppExport SEXP degreedays_sin_poly_temp(SEXP tminSEXP, SEXP tmaxSEXP, SEXP degreeSEXP, SEXP weightsSEXP) {
+RcppExport SEXP _degreedays_sin_poly_temp(SEXP tminSEXP, SEXP tmaxSEXP, SEXP degreeSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -61,7 +61,7 @@ END_RCPP
 }
 // sin_poly_temp_par
 NumericMatrix sin_poly_temp_par(NumericVector tmin, NumericVector tmax, NumericVector degree, NumericVector weights);
-RcppExport SEXP degreedays_sin_poly_temp_par(SEXP tminSEXP, SEXP tmaxSEXP, SEXP degreeSEXP, SEXP weightsSEXP) {
+RcppExport SEXP _degreedays_sin_poly_temp_par(SEXP tminSEXP, SEXP tmaxSEXP, SEXP degreeSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -75,7 +75,7 @@ END_RCPP
 }
 // sin_estimate
 double sin_estimate(double x, double tmin, double tmax);
-RcppExport SEXP degreedays_sin_estimate(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+RcppExport SEXP _degreedays_sin_estimate(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -88,7 +88,7 @@ END_RCPP
 }
 // sin_int_estimate
 double sin_int_estimate(double x, double tmin, double tmax);
-RcppExport SEXP degreedays_sin_int_estimate(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+RcppExport SEXP _degreedays_sin_int_estimate(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -101,7 +101,7 @@ END_RCPP
 }
 // sin_cubed_int_estimate
 double sin_cubed_int_estimate(double x, double tmin, double tmax);
-RcppExport SEXP degreedays_sin_cubed_int_estimate(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+RcppExport SEXP _degreedays_sin_cubed_int_estimate(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -114,7 +114,7 @@ END_RCPP
 }
 // spl1_one
 double spl1_one(double t0, double t1, double tmin, double tmax, double weight);
-RcppExport SEXP degreedays_spl1_one(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightSEXP) {
+RcppExport SEXP _degreedays_spl1_one(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -129,7 +129,7 @@ END_RCPP
 }
 // spl1_band_daily
 NumericMatrix spl1_band_daily(NumericVector t0, NumericVector t1, NumericVector tmin, NumericVector tmax, NumericVector weights);
-RcppExport SEXP degreedays_spl1_band_daily(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
+RcppExport SEXP _degreedays_spl1_band_daily(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -144,7 +144,7 @@ END_RCPP
 }
 // spl1_band_daily_par
 NumericMatrix spl1_band_daily_par(NumericVector t0, NumericVector t1, NumericVector tmin, NumericVector tmax, NumericVector weights);
-RcppExport SEXP degreedays_spl1_band_daily_par(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
+RcppExport SEXP _degreedays_spl1_band_daily_par(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -159,7 +159,7 @@ END_RCPP
 }
 // spl3_one
 double spl3_one(double t0, double tmin, double tmax, double weight);
-RcppExport SEXP degreedays_spl3_one(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightSEXP) {
+RcppExport SEXP _degreedays_spl3_one(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -173,7 +173,7 @@ END_RCPP
 }
 // spl3_band_daily
 NumericMatrix spl3_band_daily(NumericVector t0, NumericVector tmin, NumericVector tmax, NumericVector weights);
-RcppExport SEXP degreedays_spl3_band_daily(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
+RcppExport SEXP _degreedays_spl3_band_daily(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -187,7 +187,7 @@ END_RCPP
 }
 // spl3_band_daily_par
 NumericMatrix spl3_band_daily_par(NumericVector t0, NumericVector tmin, NumericVector tmax, NumericVector weights);
-RcppExport SEXP degreedays_spl3_band_daily_par(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
+RcppExport SEXP _degreedays_spl3_band_daily_par(SEXP t0SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -201,7 +201,7 @@ END_RCPP
 }
 // days_in_bin_one
 double days_in_bin_one(double t0, double t1, double tmin, double tmax, double weight);
-RcppExport SEXP degreedays_days_in_bin_one(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightSEXP) {
+RcppExport SEXP _degreedays_days_in_bin_one(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -216,7 +216,7 @@ END_RCPP
 }
 // days_in_bin_daily
 NumericMatrix days_in_bin_daily(NumericVector t0, NumericVector t1, NumericVector tmin, NumericVector tmax, NumericVector weights);
-RcppExport SEXP degreedays_days_in_bin_daily(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
+RcppExport SEXP _degreedays_days_in_bin_daily(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -231,7 +231,7 @@ END_RCPP
 }
 // days_in_bin_daily_par
 NumericMatrix days_in_bin_daily_par(NumericVector t0, NumericVector t1, NumericVector tmin, NumericVector tmax, NumericVector weights);
-RcppExport SEXP degreedays_days_in_bin_daily_par(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
+RcppExport SEXP _degreedays_days_in_bin_daily_par(SEXP t0SEXP, SEXP t1SEXP, SEXP tminSEXP, SEXP tmaxSEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -246,7 +246,7 @@ END_RCPP
 }
 // parInnProd
 double parInnProd(NumericVector x, NumericVector y);
-RcppExport SEXP degreedays_parInnProd(SEXP xSEXP, SEXP ySEXP) {
+RcppExport SEXP _degreedays_parInnProd(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -255,4 +255,31 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(parInnProd(x, y));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_degreedays_sin_estimate_NumericVector", (DL_FUNC) &_degreedays_sin_estimate_NumericVector, 3},
+    {"_degreedays_sin_int_estimate_NumericVector", (DL_FUNC) &_degreedays_sin_int_estimate_NumericVector, 3},
+    {"_degreedays_sin_poly_temp_one", (DL_FUNC) &_degreedays_sin_poly_temp_one, 4},
+    {"_degreedays_sin_poly_temp", (DL_FUNC) &_degreedays_sin_poly_temp, 4},
+    {"_degreedays_sin_poly_temp_par", (DL_FUNC) &_degreedays_sin_poly_temp_par, 4},
+    {"_degreedays_sin_estimate", (DL_FUNC) &_degreedays_sin_estimate, 3},
+    {"_degreedays_sin_int_estimate", (DL_FUNC) &_degreedays_sin_int_estimate, 3},
+    {"_degreedays_sin_cubed_int_estimate", (DL_FUNC) &_degreedays_sin_cubed_int_estimate, 3},
+    {"_degreedays_spl1_one", (DL_FUNC) &_degreedays_spl1_one, 5},
+    {"_degreedays_spl1_band_daily", (DL_FUNC) &_degreedays_spl1_band_daily, 5},
+    {"_degreedays_spl1_band_daily_par", (DL_FUNC) &_degreedays_spl1_band_daily_par, 5},
+    {"_degreedays_spl3_one", (DL_FUNC) &_degreedays_spl3_one, 4},
+    {"_degreedays_spl3_band_daily", (DL_FUNC) &_degreedays_spl3_band_daily, 4},
+    {"_degreedays_spl3_band_daily_par", (DL_FUNC) &_degreedays_spl3_band_daily_par, 4},
+    {"_degreedays_days_in_bin_one", (DL_FUNC) &_degreedays_days_in_bin_one, 5},
+    {"_degreedays_days_in_bin_daily", (DL_FUNC) &_degreedays_days_in_bin_daily, 5},
+    {"_degreedays_days_in_bin_daily_par", (DL_FUNC) &_degreedays_days_in_bin_daily_par, 5},
+    {"_degreedays_parInnProd", (DL_FUNC) &_degreedays_parInnProd, 2},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_degreedays(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

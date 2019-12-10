@@ -6,4 +6,6 @@
 \usage{
 parInnProd(x, y)
 }
-
+\description{
+Inner product calculator
+}

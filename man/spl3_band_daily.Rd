@@ -23,4 +23,3 @@ num_days x num_bands \code{matrix}
 \description{
 Calculate degree days/degree-3 splines for daily data using C++ code.
 }
-

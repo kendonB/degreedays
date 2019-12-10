@@ -52,30 +52,30 @@ NumericVector sin_int_estimate_NumericVector(NumericVector x, double tmin, doubl
 double sin_poly_temp_one(double tmin, double tmax, double degree, double weight) {
   double out;
   if(degree == 1.0){
-      out = (tmax + tmin)/2.0;
+    out = (tmax + tmin)/2.0;
   } else if (degree == 2.0){
-      // Copy pasted from integral-calculator.com
-      out = (3.0*pow(tmax, 2.0)+2.0*tmin*tmax+3.0*pow(tmin,2.0))/8.0;
+    // Copy pasted from integral-calculator.com
+    out = (3.0*pow(tmax, 2.0)+2.0*tmin*tmax+3.0*pow(tmin,2.0))/8.0;
   } else if (degree == 3.0){
-      // Copy pasted from integral-calculator.com
-      out = (5.0*pow(tmax,3.0)+3.0*tmin*pow(tmax,2.0)+3.0*pow(tmin,2.0)*tmax+5.0*pow(tmin,3.0))/16.0;
+    // Copy pasted from integral-calculator.com
+    out = (5.0*pow(tmax,3.0)+3.0*tmin*pow(tmax,2.0)+3.0*pow(tmin,2.0)*tmax+5.0*pow(tmin,3.0))/16.0;
   } else if (degree == 4.0){
-      // Copy pasted from integral-calculator.com
-      out = (35.0*pow(tmax, 4.0)+20.0*tmin*pow(tmax, 3.0)+18.0*pow(tmin, 2.0)*pow(tmax, 2.0)+20.0*pow(tmin, 3.0)*tmax+35.0*pow(tmin, 4.0))/128.0;
+    // Copy pasted from integral-calculator.com
+    out = (35.0*pow(tmax, 4.0)+20.0*tmin*pow(tmax, 3.0)+18.0*pow(tmin, 2.0)*pow(tmax, 2.0)+20.0*pow(tmin, 3.0)*tmax+35.0*pow(tmin, 4.0))/128.0;
   } else if (degree == 5.0){
-      // Copy pasted from integral-calculator.com
-      out = (63.0*pow(tmax, 5.0)+35.0*tmin*pow(tmax, 4.0)+30.0*pow(tmin, 2.0)*pow(tmax, 3.0)+30.0*pow(tmin, 3.0)*pow(tmax, 2.0)+35.0*pow(tmin, 4.0)*tmax+63.0*pow(tmin, 5.0))/256.0;
+    // Copy pasted from integral-calculator.com
+    out = (63.0*pow(tmax, 5.0)+35.0*tmin*pow(tmax, 4.0)+30.0*pow(tmin, 2.0)*pow(tmax, 3.0)+30.0*pow(tmin, 3.0)*pow(tmax, 2.0)+35.0*pow(tmin, 4.0)*tmax+63.0*pow(tmin, 5.0))/256.0;
   } else if (degree == 6.0){
-      // Copy pasted from integral-calculator.com
-      out = (231.0*pow(tmax, 6.0)+126.0*tmin*pow(tmax, 5.0)+105.0*pow(tmin, 2.0)*pow(tmax, 4.0)+100.0*pow(tmin, 3.0)*pow(tmax, 3.0)+105.0*pow(tmin, 4.0)*pow(tmax, 2.0)+126.0*pow(tmin, 5.0)*tmax+231.0*pow(tmin, 6.0))/1024.0;
+    // Copy pasted from integral-calculator.com
+    out = (231.0*pow(tmax, 6.0)+126.0*tmin*pow(tmax, 5.0)+105.0*pow(tmin, 2.0)*pow(tmax, 4.0)+100.0*pow(tmin, 3.0)*pow(tmax, 3.0)+105.0*pow(tmin, 4.0)*pow(tmax, 2.0)+126.0*pow(tmin, 5.0)*tmax+231.0*pow(tmin, 6.0))/1024.0;
   } else if (degree == 7.0){
-      // Copy pasted from integral-calculator.com
-      out = (429.0*pow(tmax, 7.0)+231.0*tmin*pow(tmax, 6.0)+189.0*pow(tmin, 2.0)*pow(tmax, 5.0)+175.0*pow(tmin, 3.0)*pow(tmax, 4.0)+175.0*pow(tmin, 4.0)*pow(tmax, 3.0)+189.0*pow(tmin, 5.0)*pow(tmax, 2.0)+231.0*pow(tmin, 6.0)*tmax+429.0*pow(tmin,7.0))/2048.0;
+    // Copy pasted from integral-calculator.com
+    out = (429.0*pow(tmax, 7.0)+231.0*tmin*pow(tmax, 6.0)+189.0*pow(tmin, 2.0)*pow(tmax, 5.0)+175.0*pow(tmin, 3.0)*pow(tmax, 4.0)+175.0*pow(tmin, 4.0)*pow(tmax, 3.0)+189.0*pow(tmin, 5.0)*pow(tmax, 2.0)+231.0*pow(tmin, 6.0)*tmax+429.0*pow(tmin,7.0))/2048.0;
   } else if (degree == 8.0){
-      // Copy pasted from integral-calculator.com
-      double b = (tmax + tmin) / 2.0;
-      double a = (tmax - tmin) / 2.0;
-      out = (128.0*pow(b,8.0)+1792.0*pow(a,2.0)*pow(b,6.0)+3360.0*pow(a,4.0)*pow(b,4.0)+1120.0*pow(a, 6.0)*pow(b, 2.0)+35.0*pow(a,8.0))/128.0;
+    // Copy pasted from integral-calculator.com
+    double b = (tmax + tmin) / 2.0;
+    double a = (tmax - tmin) / 2.0;
+    out = (128.0*pow(b,8.0)+1792.0*pow(a,2.0)*pow(b,6.0)+3360.0*pow(a,4.0)*pow(b,4.0)+1120.0*pow(a, 6.0)*pow(b, 2.0)+35.0*pow(a,8.0))/128.0;
   } else {
     throw std::invalid_argument("Integer polynomial degrees up to 8 supported.");
   }
@@ -151,8 +151,8 @@ struct Polys : public Worker {
   // initialize from Rcpp input and output matrixes (the RMatrix class
   // can be automatically converted to from the Rcpp matrix type)
   Polys(const NumericVector tmin, const NumericVector tmax,
-         const NumericVector degree, const NumericVector weights,
-         NumericMatrix output)
+        const NumericVector degree, const NumericVector weights,
+        NumericMatrix output)
     : tmin(tmin), tmax(tmax), degree(degree), weights(weights), output(output) {}
 
   // function call operator that work for the specified range (begin/end)
@@ -313,9 +313,9 @@ struct Spl1 : public Worker {
   // initialize from Rcpp input and output matrixes (the RMatrix class
   // can be automatically converted to from the Rcpp matrix type)
   Spl1(const NumericVector t0, const NumericVector t1,
-         const NumericVector tmin, const NumericVector tmax,
-         const NumericVector weights,
-         NumericMatrix output)
+       const NumericVector tmin, const NumericVector tmax,
+       const NumericVector weights,
+       NumericMatrix output)
     : t0(t0), t1(t1), tmin(tmin), tmax(tmax), weights(weights), output(output) {}
 
   // function call operator that work for the specified range (begin/end)
@@ -427,9 +427,9 @@ struct Spl3 : public Worker {
   // initialize from Rcpp input and output matrixes (the RMatrix class
   // can be automatically converted to from the Rcpp matrix type)
   Spl3(const NumericVector t0,
-         const NumericVector tmin, const NumericVector tmax,
-         const NumericVector weights,
-         NumericMatrix output)
+       const NumericVector tmin, const NumericVector tmax,
+       const NumericVector weights,
+       NumericMatrix output)
     : t0(t0), tmin(tmin), tmax(tmax), weights(weights), output(output) {}
 
   // function call operator that work for the specified range (begin/end)
@@ -464,7 +464,7 @@ NumericMatrix spl3_band_daily_par(NumericVector t0,
 
 // [[Rcpp::export]]
 double days_in_bin_one(double t0, double t1,
-                          double tmin, double tmax, double weight) {
+                       double tmin, double tmax, double weight) {
   if (tmin > tmax) {
     throw std::invalid_argument("tmin > tmax");
   }
@@ -555,7 +555,7 @@ struct Bins : public Worker {
   Bins(const NumericVector t0, const NumericVector t1,
        const NumericVector tmin, const NumericVector tmax,
        const NumericVector weights,
-         NumericMatrix output)
+       NumericMatrix output)
     : t0(t0), t1(t1), tmin(tmin), tmax(tmax), weights(weights), output(output) {}
 
   // function call operator that work for the specified range (begin/end)
@@ -571,8 +571,8 @@ struct Bins : public Worker {
 
 // [[Rcpp::export]]
 NumericMatrix days_in_bin_daily_par(NumericVector t0, NumericVector t1,
-                                         NumericVector tmin, NumericVector tmax,
-                                         NumericVector weights) {
+                                    NumericVector tmin, NumericVector tmax,
+                                    NumericVector weights) {
 
   // allocate the output matrix
   std::size_t nrow = tmin.size(), ncol = t0.size();

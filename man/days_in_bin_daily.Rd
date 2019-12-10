@@ -21,4 +21,3 @@ num_days x num_bins \code{matrix}
 \description{
 Calculate days in bin for daily data using C++ code.
 }
-

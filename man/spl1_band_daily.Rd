@@ -25,4 +25,3 @@ num_days x num_bins \code{matrix}
 \description{
 Calculate degree days/degree-1 splines for daily data using C++ code.
 }
-

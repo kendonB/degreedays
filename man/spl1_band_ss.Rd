@@ -24,4 +24,3 @@ spl1_band_ss(t0, t1, tmin, tmax, weights = NULL, parallel = FALSE)
 C++ function for calculating a data.frame
 of degree days/degree-1 splines for vectors of tmin / tmax.
 }
-

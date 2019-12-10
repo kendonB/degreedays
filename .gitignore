@@ -6,3 +6,4 @@
 *.dll
 *.so
 *.o
+.Rprofile

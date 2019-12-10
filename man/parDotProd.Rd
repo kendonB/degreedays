@@ -6,4 +6,6 @@
 \usage{
 parDotProd(x, y)
 }
-
+\description{
+Dot product calculator
+}

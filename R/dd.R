@@ -12,10 +12,16 @@ spl1_band_ss <- function(t0, t1, tmin, tmax, weights = NULL, parallel = FALSE){
     # rep fails with length(tmin) > .Machine$integer.max
     weights <- tmin*0 + 1
   }
+
+  t0_for_analysis <- t0
+  t0_for_analysis[t0_for_analysis == -Inf] <- min(tmin, na.rm = TRUE) - .Machine$double.eps*10
+  if(!identical(unique(t0_for_analysis), t0_for_analysis)){
+    warning("t0 contains duplicates.")
+  }
   if(parallel){
-    out <- data.frame(degreedays:::spl1_band_daily_par(t0, t1, tmin, tmax, weights))
+    out <- data.frame(degreedays:::spl1_band_daily_par(t0_for_analysis, t1, tmin, tmax, weights))
   } else {
-    out <- data.frame(degreedays:::spl1_band_daily(t0, t1, tmin, tmax, weights))
+    out <- data.frame(degreedays:::spl1_band_daily(t0_for_analysis, t1, tmin, tmax, weights))
   }
 
   spl1_bottoms_names <- gsub("-", "n", as.character(t0))

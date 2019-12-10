@@ -20,4 +20,3 @@ poly_ss(tmin, tmax, degree, weights = NULL, parallel = FALSE)
 C++ function for calculating a data.frame
 of degree polynomials for vectors of tmin / tmax.
 }
-

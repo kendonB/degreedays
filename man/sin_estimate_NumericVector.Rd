@@ -19,4 +19,3 @@ Vector of interpolated sine values.
 \description{
 Sine function evaluated at x for single sine interpolation.
 }
-

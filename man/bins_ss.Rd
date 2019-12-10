@@ -24,4 +24,3 @@ bins_ss(t0, t1, tmin, tmax, weights = NULL, parallel = FALSE)
 C++ function for calculating a data.frame
 of degree bins for vectors of tmin / tmax, and vectors of bins bounds.
 }
-
