@@ -15,7 +15,7 @@ spl1_band_ss <- function(t0, t1, tmin, tmax, weights = NULL, parallel = FALSE){
 
   t0_for_analysis <- t0
   t0_for_analysis[t0_for_analysis == -Inf] <- min(tmin, na.rm = TRUE) - .Machine$double.eps*10
-  if(!identical(unique(t0_for_analysis), t0_for_analysis)){
+  if(length(unique(t0_for_analysis)) != length(t0_for_analysis)){
     warning("t0 contains duplicates.")
   }
   if(parallel){
