@@ -18,6 +18,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sin_estimate_NumericVectorxtmintmax
+NumericVector sin_estimate_NumericVectorxtmintmax(NumericVector x, NumericVector tmin, NumericVector tmax);
+RcppExport SEXP _degreedays_sin_estimate_NumericVectorxtmintmax(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmin(tminSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type tmax(tmaxSEXP);
+    rcpp_result_gen = Rcpp::wrap(sin_estimate_NumericVectorxtmintmax(x, tmin, tmax));
+    return rcpp_result_gen;
+END_RCPP
+}
 // sin_int_estimate_NumericVector
 NumericVector sin_int_estimate_NumericVector(NumericVector x, double tmin, double tmax);
 RcppExport SEXP _degreedays_sin_int_estimate_NumericVector(SEXP xSEXP, SEXP tminSEXP, SEXP tmaxSEXP) {
@@ -259,6 +272,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_degreedays_sin_estimate_NumericVector", (DL_FUNC) &_degreedays_sin_estimate_NumericVector, 3},
+    {"_degreedays_sin_estimate_NumericVectorxtmintmax", (DL_FUNC) &_degreedays_sin_estimate_NumericVectorxtmintmax, 3},
     {"_degreedays_sin_int_estimate_NumericVector", (DL_FUNC) &_degreedays_sin_int_estimate_NumericVector, 3},
     {"_degreedays_sin_poly_temp_one", (DL_FUNC) &_degreedays_sin_poly_temp_one, 4},
     {"_degreedays_sin_poly_temp", (DL_FUNC) &_degreedays_sin_poly_temp, 4},

@@ -36,6 +36,32 @@ NumericVector sin_estimate_NumericVector(NumericVector x, double tmin, double tm
   return out;
 }
 
+/// Unit is days of temperature - i.e. x == 0.5 -> 12pm
+// Horizontal shift parameter is irrelevant for the single sine method
+// - this assumes the day starts at the minimum.
+//' @title Sine function with max and min given.
+//' @description Sine function evaluated at x for single sine interpolation.
+//' @param x Vector of x values in [0, 1] to evaluate at.
+//' @param tmin \code{double} tmin value.
+//' @param tmax \code{double} tmax value.
+//' @return Vector of interpolated sine values.
+// [[Rcpp::export]]
+NumericVector sin_estimate_NumericVectorxtmintmax(NumericVector x, NumericVector tmin, NumericVector tmax) {
+  double shift = 6.0 / 24.0 + 0.0 + 0.0;
+  std::size_t n = x.size();
+  if (tmin.size() != x.size()) {
+    throw std::invalid_argument("Lengths of tmin and x differ.");
+  }
+  if (tmax.size() != x.size()) {
+    throw std::invalid_argument("Lengths of tmax and x differ.");
+  }
+  NumericVector out(n);
+  for(std::size_t i = 0; i < n; ++i) {
+    out[i] = (tmax[i] - tmin[i]) / 2.0 * sin(2.0 * M_PI * (x[i] - shift)) + (tmax[i] + tmin[i]) / 2.0;
+  }
+  return out;
+}
+
 // [[Rcpp::export]]
 NumericVector sin_int_estimate_NumericVector(NumericVector x, double tmin, double tmax) {
   double shift = 6.0 / 24.0;

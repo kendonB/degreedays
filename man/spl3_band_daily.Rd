@@ -14,8 +14,6 @@ spl3_band_daily(t0, tmin, tmax, weights)
 \item{tmax}{vector of tmax values (1 per day)}
 
 \item{weights}{vector of optional weights to multiply output by. Default is 1.}
-
-\item{tmax}{vector of tmax values (1 per day)}
 }
 \value{
 num_days x num_bands \code{matrix}

@@ -11,6 +11,16 @@ sin_estimate_NumericVector <- function(x, tmin, tmax) {
     .Call('_degreedays_sin_estimate_NumericVector', PACKAGE = 'degreedays', x, tmin, tmax)
 }
 
+#' @title Sine function with max and min given.
+#' @description Sine function evaluated at x for single sine interpolation.
+#' @param x Vector of x values in [0, 1] to evaluate at.
+#' @param tmin \code{double} tmin value.
+#' @param tmax \code{double} tmax value.
+#' @return Vector of interpolated sine values.
+sin_estimate_NumericVectorxtmintmax <- function(x, tmin, tmax) {
+    .Call('_degreedays_sin_estimate_NumericVectorxtmintmax', PACKAGE = 'degreedays', x, tmin, tmax)
+}
+
 sin_int_estimate_NumericVector <- function(x, tmin, tmax) {
     .Call('_degreedays_sin_int_estimate_NumericVector', PACKAGE = 'degreedays', x, tmin, tmax)
 }
